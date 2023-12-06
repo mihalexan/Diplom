@@ -1,0 +1,35 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1450px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.navMenu {
+  font-family: Montserrat;
+  size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  gap: 20px;
+  line-height: 130%;
+  display: flex;
+  justify-content: space-around; /* Элементы распределяются равномерно по горизонтали */
+  color: var(--txt-black, #282828);
+}
+
+.navMenu a {
+  text-decoration: none;
+}

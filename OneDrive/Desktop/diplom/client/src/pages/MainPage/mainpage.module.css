@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap");
+
+body {
+  background: #fff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container_categories {
+  margin: 0 auto;
+  max-width: 1450px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 60px;
+  padding-bottom: 30px;
+  background: #fff;
+}
+
+.title {
+  margin: 0;
+  color: var(--txt-black, #282828);
+  font-family: Montserrat;
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 110%;
+}
+
+.line {
+  width: 832px;
+  height: 1px;
+  background: #ddd;
+  /* Регулируйте отступы по необходимости */
+}
+
+.all_categories {
+  color: var(--txt-grey, #8b8b8b);
+  text-align: center;
+  padding: 8px 16px;
+  font-family: Montserrat;
+  font-weight: 500;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 126%;
+
+  border-radius: var(--radius-small, 6px);
+  border: 1px solid var(--grey-divider, #ddd);
+  cursor: pointer;
+}
