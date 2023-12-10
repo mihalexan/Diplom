@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../src/App.css";
 import { Routes, Route, useParams } from "react-router-dom";
 import Header from "./components/Header";
@@ -9,12 +9,19 @@ import AllSales from "./pages/AllSales";
 import Basket from "./pages/Basket";
 import NotFound from "./pages/NotFound";
 import CategoriesItem from "./components/CategoriesItem";
-
-function Annuals() {
-  let { categoryId } = useParams();
-}
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCategories } from "./requests/categoriesRequest";
 
 function App() {
+  /* const dispatch = useDispatch();
+  const categories = useSelector((state) => state.categories.list);
+
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, [dispatch]);
+
+  console.log(categories);*/
+
   return (
     <div>
       <Header />
@@ -23,7 +30,7 @@ function App() {
         <Route path="/categories" element={<Categories />}>
           <Route path="all" element={<CategoriesItem />} />
 
-          <Route path="annuals" element={<Annuals />} />
+          <Route path="annuals/1" element={<Annuals />} />
           <Route path="nursery" element={<CategoriesItem />} />
           <Route
             path="garden_art"

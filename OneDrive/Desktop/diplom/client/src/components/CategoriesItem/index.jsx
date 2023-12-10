@@ -1,35 +1,26 @@
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
+import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 
-// Import Swiper styles
+import { useDispatch, useSelector } from "react-redux";
+import { getAllCategories } from "../../requests/categoriesRequest";
+
 import "swiper/css";
 import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 import "./styles.css";
 
 // import required modules
-import { Pagination } from "swiper/modules";
+import { Pagination, Navigation } from "swiper/modules";
 
 export default function CategoriesItem() {
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.categories.list);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3333/categories/all");
-        if (!response.ok) {
-          throw new Error("Ошибка сети");
-        }
-        const result = await response.json();
-        setData(result); // API возвращает массив данных
-      } catch (error) {
-        console.error("Ошибка при получении данных:", error);
-      }
-    };
-    fetchData();
-  }, []); // эффект запускается один раз при монтировании компонента
+    dispatch(getAllCategories());
+  }, [dispatch]);
 
   return (
     <div className="swiper-container">
@@ -57,7 +48,7 @@ export default function CategoriesItem() {
             spaceBetween: 50,
           },
         }}
-        modules={[Pagination]}
+        modules={[Pagination, Navigation]}
         className="mySwiper"
       >
         {data.map((item, index) => (

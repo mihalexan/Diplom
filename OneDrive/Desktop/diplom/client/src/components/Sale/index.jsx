@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
 
 // Import Swiper styles
 import "swiper/css";
@@ -29,16 +30,6 @@ export default function Sale() {
     };
     fetchData();
   }, []); // эффект запускается один раз при монтировании компонента
-
-  // Функция для вычисления процента скидки
-  const calculateDiscountPercentage = (originalPrice, discountedPrice) => {
-    return ((originalPrice - discountedPrice) / originalPrice) * 100;
-  };
-
-  // Отфильтровать продукты с скидкой и проверить наличие свойства discount
-  const discountedProducts = data.filter(
-    (product) => product.discount && product.discount > 0
-  );
 
   return (
     <div className="swiper-container">
@@ -69,27 +60,17 @@ export default function Sale() {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {discountedProducts.map((item, index) => (
+        {data.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="swiper-slide-content">
-              <img
-                src={`http://localhost:3333${item.image}`}
-                alt={item.title}
-              />
-              <p>{item.title}</p>
-              <p>Цена: {item.price}</p>
-              {item.discount && <p>Скидка: {item.discount}%</p>}
-              {item.discount && (
-                <p>
-                  Процент скидки:{" "}
-                  {calculateDiscountPercentage(
-                    item.price,
-                    item.price - item.discount_price
-                  )}
-                  %
-                </p>
-              )}
-            </div>
+            <Link to={`/products/${item.id === 1 ? "annuals" : item.id}`}>
+              <div className="swiper-slide-content">
+                <img
+                  src={`http://localhost:3333${item.image}`}
+                  alt={item.title}
+                />
+                <p>{item.title}</p>
+              </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
