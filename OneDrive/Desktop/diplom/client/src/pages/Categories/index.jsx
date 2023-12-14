@@ -1,15 +1,18 @@
-import Footer from "../../components/Footer";
 import s from "./categories.module.css";
 import CategoriesItem from "../../components/CategoriesItem";
-import { Title } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 export const Categories = () => {
   return (
     <>
       <div className={s.container}>
-        <button>Main Page</button>
-        <button>Categories</button>
-
+        <div className={s.buttons}>
+          <Link to="/">
+            <button className={s.btn1}>Main Page</button>
+          </Link>
+          <div className={s.line} />
+          <button className={s.btn2}>Categories</button>
+        </div>
         <h1>Categories</h1>
       </div>
       <CategoriesItem />

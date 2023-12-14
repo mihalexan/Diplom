@@ -32,9 +32,10 @@ body {
 }
 
 .line {
-  width: 832px;
+  width: 900px;
   height: 1px;
   background: #ddd;
+  margin-right: 0;
   /* Регулируйте отступы по необходимости */
 }
 

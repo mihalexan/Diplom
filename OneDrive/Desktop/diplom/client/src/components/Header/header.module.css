@@ -32,4 +32,15 @@
 
 .navMenu a {
   text-decoration: none;
+  color: black;
+}
+
+.navMenu a:hover {
+  cursor: pointer;
+  color: #339933;
+}
+
+.headerLine {
+  border-bottom: 1px solid var(--grey-divider, #ddd);
+  background: var(--white, #fff);
 }

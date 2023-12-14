@@ -1,20 +1,25 @@
 import React from "react";
 import s from "./style.module.css";
-import image from "../../assets/404-Page.svg";
+import four from "./assets/4.svg";
+import kaktus from "./assets/kaktus.svg";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer";
 
 const NotFound = () => {
   return (
-    <div className={s.page}>
-      <img className={s.img} src={image} alt="img" />
+    <div className={s.notFound}>
+      <div className={s.imges}>
+        <img className={s.image} src={four} alt="img" />
+        <img className={s.image} src={kaktus} alt="img" />
+        <img className={s.image} src={four} alt="img" />
+      </div>
+      <h1 className={s.title}>Page Not Found</h1>
       <p className={s.text}>
-        Oops! The page you're looking for does not exist.
+        We’re sorry, the page you requested could not be found.
       </p>
+      <p className={s.text}> Please go back to the homepage.</p>
       <Link to="/" className={s.home_btn}>
         Go Home
       </Link>
-      <Footer />
     </div>
   );
 };

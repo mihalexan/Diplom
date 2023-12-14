@@ -1,35 +1,38 @@
-import React, { useEffect, useRef, useState } from "react";
-// Import Swiper React components
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Link } from "react-router-dom";
-
-// Import Swiper styles
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../../requests/saleRequests";
 import "swiper/css";
 import "swiper/css/pagination";
-
-import "./styles.css";
-
-// import required modules
+import styles from "./styles.css";
 import { Pagination } from "swiper/modules";
 
 export default function Sale() {
-  const [data, setData] = useState([]);
+  const dispatch = useDispatch();
+  const saleData = useSelector((state) => state.sale.list);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3333/products/all");
-        if (!response.ok) {
-          throw new Error("Ошибка сети");
-        }
-        const result = await response.json();
-        setData(result); // API возвращает массив данных
-      } catch (error) {
-        console.error("Ошибка при получении данных:", error);
-      }
-    };
-    fetchData();
-  }, []); // эффект запускается один раз при монтировании компонента
+    dispatch(getAllProducts());
+  }, [dispatch]);
+
+  const [hoveredProductId, setHoveredProductId] = useState(null);
+  const [addedProductIds, setAddedProductIds] = useState([]);
+
+  const fourArray = saleData.filter((el) => el.discont_price);
+
+  const handleMouseEnter = (productId) => {
+    setHoveredProductId(productId);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredProductId(null);
+  };
+
+  const handleAddToCart = (productId) => {
+    setAddedProductIds([...addedProductIds, productId]);
+  };
+
+  const isProductAdded = (productId) => addedProductIds.includes(productId);
 
   return (
     <div className="swiper-container">
@@ -60,17 +63,55 @@ export default function Sale() {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {data.map((item, index) => (
-          <SwiperSlide key={index}>
-            <Link to={`/products/${item.id === 1 ? "annuals" : item.id}`}>
-              <div className="swiper-slide-content">
+        {fourArray.map((el) => (
+          <SwiperSlide key={el.id}>
+            <div
+              className={`swiper-slide-content-sale ${
+                hoveredProductId === el.id ? "hovered" : ""
+              } ${isProductAdded(el.id) ? "added" : ""}`}
+              onMouseEnter={() => handleMouseEnter(el.id)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <div className="buttonInside">
                 <img
-                  src={`http://localhost:3333${item.image}`}
-                  alt={item.title}
+                  style={{
+                    borderBottomLeftRadius: 0,
+                    borderBottomRightRadius: 0,
+                  }}
+                  src={`http://localhost:3333${el.image}`}
+                  alt={el.title}
                 />
-                <p>{item.title}</p>
+
+                {hoveredProductId === el.id && (
+                  <button
+                    className={isProductAdded(el.id) ? "added active" : ""}
+                    onClick={() => handleAddToCart(el.id)}
+                    disabled={isProductAdded(el.id)}
+                  >
+                    {isProductAdded(el.id) ? "Added" : "Add to Cart"}
+                  </button>
+                )}
               </div>
-            </Link>
+
+              <div className="productInfo">
+                {el.discont_price && (
+                  <span className="saleDiscount">-{el.discont_price}%</span>
+                )}
+              </div>
+
+              <h3 className="h3Cards">
+                {el.title.length <= 28
+                  ? el.title
+                  : el.title.slice(0, 15) + "..."}
+              </h3>
+
+              <div className="priceInfo">
+                <span className="discountedPrice">
+                  ${(el.price - (el.price * el.discont_price) / 100).toFixed(2)}
+                </span>
+                <span className="initialPrice">${el.price}</span>
+              </div>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

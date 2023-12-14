@@ -54,3 +54,9 @@
   background: var(--green, #393);
   cursor: pointer;
 }
+
+.btn:hover {
+  background-color: #339933;
+  color: white;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px;
+}

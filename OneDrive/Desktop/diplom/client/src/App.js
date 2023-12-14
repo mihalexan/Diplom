@@ -11,16 +11,17 @@ import NotFound from "./pages/NotFound";
 import CategoriesItem from "./components/CategoriesItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "./requests/categoriesRequest";
+import Footer from "./components/Footer";
 
 function App() {
-  /* const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const categories = useSelector((state) => state.categories.list);
 
   useEffect(() => {
     dispatch(getAllCategories());
   }, [dispatch]);
 
-  console.log(categories);*/
+  console.log(categories);
 
   return (
     <div>
@@ -30,7 +31,6 @@ function App() {
         <Route path="/categories" element={<Categories />}>
           <Route path="all" element={<CategoriesItem />} />
 
-          <Route path="annuals/1" element={<Annuals />} />
           <Route path="nursery" element={<CategoriesItem />} />
           <Route
             path="garden_art"
@@ -47,6 +47,7 @@ function App() {
         <Route path="/basket" element={<Basket />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
+      <Footer />
     </div>
   );
 }

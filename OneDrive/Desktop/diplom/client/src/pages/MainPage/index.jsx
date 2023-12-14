@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
 import style from "./mainpage.module.css";
 import Head from "../../components/Head";
-import Footer from "../../components/Footer";
 import Sale from "../../components/Sale";
 
-import { Form, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import CategoriesItem from "../../components/CategoriesItem";
 import FormItem from "../../components/FormItem";
 
@@ -42,7 +40,6 @@ export const MainPage = () => {
         </Link>
       </div>
       <Sale />
-      <Footer />
     </div>
   );
 };
