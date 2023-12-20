@@ -12,6 +12,7 @@ import CategoriesItem from "./components/CategoriesItem";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "./requests/categoriesRequest";
 import Footer from "./components/Footer";
+import ProductsCategories from "./pages/ProductsCategories";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,31 +22,17 @@ function App() {
     dispatch(getAllCategories());
   }, [dispatch]);
 
-  console.log(categories);
-
   return (
     <div>
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
-        <Route path="/categories" element={<Categories />}>
-          <Route path="all" element={<CategoriesItem />} />
-
-          <Route path="nursery" element={<CategoriesItem />} />
-          <Route
-            path="garden_art"
-            element={<CategoriesItem categoryId={3} />}
-          />
-          <Route
-            path="plant_care"
-            element={<CategoriesItem categoryId={4} />}
-          />
-          <Route path="seasonal" element={<CategoriesItem categoryId={5} />} />
-        </Route>
+        <Route path="/categories" element={<Categories />} />
         <Route path="/all_products" element={<AllProducts />} />
         <Route path="/all_sales" element={<AllSales />} />
         <Route path="/basket" element={<Basket />} />
         <Route path="/*" element={<NotFound />} />
+        <Route path="/categories/:id" element={<ProductsCategories />} />
       </Routes>
       <Footer />
     </div>

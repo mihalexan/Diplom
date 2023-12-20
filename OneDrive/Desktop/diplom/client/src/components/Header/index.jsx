@@ -4,7 +4,11 @@ import logo from "../../assets/logo.svg";
 import basket from "../../assets/basket(empty).svg";
 import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 export const Header = () => {
+  const totalItemsInCart = useSelector((state) => state.cart.totalItems);
+
   return (
     <>
       <div className={`${style.container} ${style.header}`}>
@@ -18,11 +22,16 @@ export const Header = () => {
           <Link to="/all_sales">All sales</Link>
         </div>
         <Link to="/basket">
-          <img
-            className={`${style.basket} ${style.item}`}
-            src={basket}
-            alt="basket"
-          ></img>
+          <div className={style.cartIndicatorContainer}>
+            <img
+              className={`${style.basket} ${style.item}`}
+              src={basket}
+              alt="basket"
+            ></img>
+            {totalItemsInCart > 0 && (
+              <div className={style.cartIndicator}>{totalItemsInCart}</div>
+            )}
+          </div>
         </Link>
       </div>
       <div className={style.headerLine} />

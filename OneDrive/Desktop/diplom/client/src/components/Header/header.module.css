@@ -44,3 +44,20 @@
   border-bottom: 1px solid var(--grey-divider, #ddd);
   background: var(--white, #fff);
 }
+
+.cartIndicatorContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.cartIndicator {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red; /* Цвет фона индикатора */
+  color: white; /* Цвет текста индикатора */
+  border-radius: 50%;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+}

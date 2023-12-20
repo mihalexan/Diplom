@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllProducts } from "../../requests/allProductsRequest";
+import s from "./discount.module.css";
+import { useDispatch } from "react-redux";
 import { addToCard } from "../../store/slices/cartSlice";
-import {
-  selectProducts,
-  selectProductsStatus,
-} from "../../store/slices/allProductsSlice";
-import s from "./sorting.module.css";
-import CustomCheckbox from "../FilterContainer/CustomCheckbox";
+import { getAllDiscountedProducts } from "../../requests/saleRequests";
 import FilterContainer from "../FilterContainer";
 
-const Sorting = () => {
+const Discounts = () => {
+  const [hoveredProductId, setHoveredProductId] = useState(null);
   const [addedProductIds, setAddedProductIds] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
     // Загрузка данных с сервера при монтировании компонента
-    dispatch(getAllProducts());
+    dispatch(getAllDiscountedProducts());
   }, [dispatch]);
 
-  const products = useSelector(selectProducts);
-  const productsStatus = useSelector(selectProductsStatus);
+  const handleMouseEnter = (productId) => {
+    setHoveredProductId(productId);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredProductId(null);
+  };
 
   const handleAddToCart = (productId) => {
     setAddedProductIds([...addedProductIds, productId]);
@@ -28,15 +29,20 @@ const Sorting = () => {
 
   const isProductAdded = (productId) => addedProductIds.includes(productId);
 
-  const baseImageUrl = "http://localhost:3333";
-
   return (
     <div className={s.container_sort}>
-      <FilterContainer showCheckbox={true}>
-        {({ products: filteredAndSortedData }) => (
+      <FilterContainer showCheckbox={false}>
+        {({ products }) => (
           <div className={s.img_container}>
-            {filteredAndSortedData.map((product) => (
-              <div className={s.product_content} key={product.id}>
+            {products.map((product) => (
+              <div
+                key={product.id}
+                className={`${s.product_content} ${
+                  hoveredProductId === product.id ? s.hovered : ""
+                }`}
+                onMouseEnter={() => handleMouseEnter(product.id)}
+                onMouseLeave={handleMouseLeave}
+              >
                 <div className="buttonInside">
                   <img
                     style={{
@@ -44,7 +50,7 @@ const Sorting = () => {
                       borderBottomRightRadius: 0,
                     }}
                     className={s.img_all}
-                    src={`${baseImageUrl}${product.image}`}
+                    src={`http://localhost:3333${product.image}`}
                     alt={product.name}
                   />
 
@@ -88,9 +94,9 @@ const Sorting = () => {
             ))}
           </div>
         )}
-        ;
       </FilterContainer>
     </div>
   );
 };
-export default Sorting;
+
+export default Discounts;

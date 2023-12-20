@@ -53,7 +53,7 @@ export default function CategoriesItem() {
       >
         {data.map((item, index) => (
           <SwiperSlide key={index}>
-            <Link to={`/categories/${item.id === 1 ? "annuals" : item.id}`}>
+            <Link to={`/categories/${item.id}`}>
               <div className="swiper-slide-content">
                 <img
                   src={`http://localhost:3333${item.image}`}

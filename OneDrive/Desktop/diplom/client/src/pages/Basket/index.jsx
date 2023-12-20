@@ -1,9 +1,17 @@
 import React from "react";
+import Cart from "../../components/Cart";
+import s from "./basket.module.css";
 
-export const Basket = () => {
+const Basket = () => {
   return (
     <div>
-      <h1>Basket</h1>
+      <div className={s.head_cart}>
+        <h1 className={s.h1}>Shopping cart</h1>
+        <div className={s.line}></div>
+        <button className={s.back}>Back to the store</button>
+      </div>
+
+      <Cart />
     </div>
   );
 };
