@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap");
+
+.container_sort {
+    margin: 0 auto;
+    max-width: 1450px;
+  }
+
+  .price {
+    color: var(--txt-black, #282828);
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 26px 
+}
+
+.price,
+.from,
+.to {
+    display: inline;
+    margin-right: 18px;
+}
+
+.from,
+.to {
+    border-radius: var(--radius-small, 6px);
+    border: 1px solid var(--grey-divider, #DDD);
+    width: 112px;
+    padding: 8px 16px;
+    align-items: center;
+    gap: 10px;
+}

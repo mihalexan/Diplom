@@ -1,4 +1,3 @@
-// productsSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import { getAllProducts } from "../../requests/allProductsRequest";
 
@@ -28,7 +27,6 @@ const allProductsSlice = createSlice({
   },
 });
 
-export const selectProducts = (state) => state.allProducts.products;
-export const selectProductsStatus = (state) => state.allProducts.status;
+
 
 export default allProductsSlice.reducer;

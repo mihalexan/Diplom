@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../requests/allProductsRequest";
 import CustomCheckbox from "./CustomCheckbox";
@@ -31,14 +31,14 @@ const FilterContainer = ({ initialData, showCheckbox, children }) => {
   const products = useSelector(selectProducts);
   let filteredAndSortedData = [...products];
 
-  // Пример фильтрации по скидке
+  // 
   if (showDiscountedOnly) {
     filteredAndSortedData = filteredAndSortedData.filter(
       (product) => product.discont_price
     );
   }
 
-  // Пример сортировки по цене
+  // сортировки по цене
   if (sortOption === "price-high-low") {
     filteredAndSortedData.sort((a, b) => b.price - a.price);
   } else if (sortOption === "price-low-high") {
@@ -48,7 +48,6 @@ const FilterContainer = ({ initialData, showCheckbox, children }) => {
   return (
     <div>
       <div>
-        {/* Добавьте сюда поля для фильтрации (цена, скидка, сортировка и т.д.) */}
         <input
           type="number"
           placeholder="from"
@@ -89,4 +88,4 @@ const FilterContainer = ({ initialData, showCheckbox, children }) => {
   );
 };
 
-export default FilterContainer;
+export default FilterContainer;*/

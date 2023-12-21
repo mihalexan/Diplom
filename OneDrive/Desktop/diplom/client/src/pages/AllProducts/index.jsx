@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import s from "./allproducts.module.css";
-import Sorting from "../../components/Sorting";
+import ProductsContainer from "../../components/ProductsContainer";
 
 export const AllProducts = () => {
   return (
@@ -16,7 +16,7 @@ export const AllProducts = () => {
         </div>
         <h1>All products</h1>
       </div>
-      <Sorting />
+      <ProductsContainer showDiscountedOnly={false} />
     </>
   );
 };

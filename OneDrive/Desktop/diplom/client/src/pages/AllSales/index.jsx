@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./allsales.module.css";
 import { Link } from "react-router-dom";
-import Discounts from "../../components/Discounts";
+import ProductsContainer from "../../components/ProductsContainer";
 
 export const AllSales = () => {
   return (
@@ -15,7 +15,7 @@ export const AllSales = () => {
           <button className={s.btn2}>All sales</button>
         </div>
         <h1>All sales</h1>
-        <Discounts />
+        <ProductsContainer showDiscountedOnly={true} />
       </div>
     </>
   );

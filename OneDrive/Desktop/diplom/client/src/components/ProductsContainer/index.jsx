@@ -1,48 +1,86 @@
-import React, { useEffect, useState } from "react";
-import s from "./discount.module.css";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector} from "react-redux";
+import { getAllProducts } from "../../requests/allProductsRequest";
 import { addToCard } from "../../store/slices/cartSlice";
-import { getAllDiscountedProducts } from "../../requests/saleRequests";
-import FilterContainer from "../FilterContainer";
+import s from "./productsContainer.module.css";
+import PriceFilter from '../PriceFilter';
+import SortingDiscount from '../SortingDiscount';
+import { setPriceFilter, toggleDiscount } from '../../store/slices/filtersSlice';
 
-const Discounts = () => {
+const ProductsContainer = ({ showDiscountedOnly }) => {
   const [hoveredProductId, setHoveredProductId] = useState(null);
   const [addedProductIds, setAddedProductIds] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  
   const dispatch = useDispatch();
+  const allData = useSelector((state) => state.sale.list);
+  const isDiscountedOnly  = useSelector((state) => state.filters.showDiscountedOnly);
+
+  const productsToShow = showDiscountedOnly ? allData.filter((el) => el.discont_price) : allData;
+
+    const handleFilterChange = (newFilterParams) => {
+    const filtered = productsToShow.filter((product) => {
+      const price = (
+        product.price -
+        (product.price * product.discont_price) / 100
+      ).toFixed(2);
+
+   //    Если поля пустые, отображаем все товары
+     if (!newFilterParams.from && !newFilterParams.to) {
+        return true;
+      }
+
+      return (
+        (!newFilterParams.from || price >= newFilterParams.from) &&
+        (!newFilterParams.to || price <= newFilterParams.to)
+      );
+    });
+    setFilteredProducts(filtered);
+  };
 
   useEffect(() => {
     // Загрузка данных с сервера при монтировании компонента
-    dispatch(getAllDiscountedProducts());
+    dispatch(getAllProducts());
+    // Применение начального состояния фильтрации
+    dispatch(setPriceFilter({ fromPrice: '', toPrice: '' }));
   }, [dispatch]);
 
   const handleMouseEnter = (productId) => {
     setHoveredProductId(productId);
   };
-
+  
   const handleMouseLeave = () => {
     setHoveredProductId(null);
   };
-
   const handleAddToCart = (productId) => {
     setAddedProductIds([...addedProductIds, productId]);
+  };
+
+  const handleToggleDiscount = () => {
+    // Диспетчер Redux для изменения showDiscountedOnly
+    dispatch(toggleDiscount());
   };
 
   const isProductAdded = (productId) => addedProductIds.includes(productId);
 
   return (
+    <div>
+    <PriceFilter  onFilterChange={handleFilterChange}/>
+    <div className={s.customCheckboxContainer}>
+          {/* Рендерим компонент SortingDiscount только на странице "All Products" */}
+          {window.location.pathname.includes('/all_products') && (
+            <SortingDiscount onChange={handleToggleDiscount} checked={isDiscountedOnly} />
+          )}
+        </div>
     <div className={s.container_sort}>
-      <FilterContainer showCheckbox={false}>
-        {({ products }) => (
           <div className={s.img_container}>
-            {products.map((product) => (
-              <div
-                key={product.id}
-                className={`${s.product_content} ${
-                  hoveredProductId === product.id ? s.hovered : ""
-                }`}
-                onMouseEnter={() => handleMouseEnter(product.id)}
-                onMouseLeave={handleMouseLeave}
-              >
+            {filteredProducts.map((product) => (
+              <div key={product.id}
+              className={`${s.product_content} ${
+                hoveredProductId === product.id ? s.hovered : ""
+              }`}
+              onMouseEnter={() => handleMouseEnter(product.id)}
+              onMouseLeave={handleMouseLeave}>
                 <div className="buttonInside">
                   <img
                     style={{
@@ -93,10 +131,9 @@ const Discounts = () => {
               </div>
             ))}
           </div>
-        )}
-      </FilterContainer>
     </div>
-  );
-};
+    </div>
+  )
+}
 
-export default Discounts;
+export default ProductsContainer;
