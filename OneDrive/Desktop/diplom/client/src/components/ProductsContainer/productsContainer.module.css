@@ -146,3 +146,64 @@
   font-weight: 600;
   line-height: 110%; /* 44px */
 }
+
+.buttonInside {
+  position: relative;
+}
+
+.buttonInside img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--grey-divider, #ddd);
+}
+
+.buttonInside button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%; /* Занимаем всю ширину изображения */
+  padding: 16px 32px; /* Настройте отступы в соответствии с вашими предпочтениями */
+  background: var(--green, #393);
+  color: #fff; /* Цвет текста кнопки */
+  border-radius: var(--radius-small, 6px);
+  text-align: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.3s ease, background 0.3s ease, color 0.3s ease;
+  z-index: 1; /* Устанавливаем z-index, чтобы кнопка была поверх изображения */
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.buttonInside:hover button {
+  opacity: 1;
+  background: var(--green, #393); /* Новый цвет при наведении на фото */
+  color: #ffffff;
+}
+
+.buttonInside button:hover {
+  background: var(
+    --black,
+    #282828
+  ); /* Восстанавливаем cерый цвет при наведении на кнопку */
+  color: #ffffff; /* Восстанавливаем белый цвет текста при наведении на кнопку */
+}
+
+.buttonInside button:focus {
+  border-radius: var(--radius-small, 6px);
+  border: 1px solid var(--black, #282828);
+  background: var(--white, #fff);
+  color: #282828;
+  /* Добавлен переход */
+}
+.addedText {
+  color: #282828;
+}
+
+.added.active .addedText {
+  color: #282828;
+}

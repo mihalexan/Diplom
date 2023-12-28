@@ -7,7 +7,7 @@ const filtersSlice = createSlice({
       fromPrice: "",
       toPrice: "",
     },
-    showDiscountedOnly: false,  // Начальное значение для флага showDiscountedOnly
+    showDiscountedOnly: false, // Начальное значение для флага showDiscountedOnly
     sortOption: "default",
   },
   reducers: {
@@ -23,6 +23,7 @@ const filtersSlice = createSlice({
   },
 });
 
-export const { setPriceFilter, toggleDiscount, setSortOption } = filtersSlice.actions;
+export const { setPriceFilter, toggleDiscount, setSortOption } =
+  filtersSlice.actions;
 
 export default filtersSlice.reducer;
