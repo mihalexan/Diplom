@@ -1,0 +1,42 @@
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllProducts } from "../../store/slices/allProductsSlice";
+import s from "../products/Products.module.css";
+import ProductCard from "../products/ProductCard";
+import { SaleSorting } from "./SaleSorting";
+
+function Sales() {
+  const products = useSelector(
+    (state) => state.products && state.products.products
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  }, [dispatch]);
+
+  const discountedItems = products.filter((product) => product.discont_price);
+  return (
+    <main className={s.productsMain}>
+      <div className={s.navWrapper}>
+        <Link className={s.links} to="/">
+          Main page
+        </Link>
+        <div className={s.greyLine}></div>
+        <Link id={s.currentLink} to="/sales">
+          All sales
+        </Link>
+      </div>
+      <h4 className={s.title}>Discounted items</h4>
+
+      <SaleSorting />
+      <ul className={s.productWrapper}>
+        {discountedItems.map((discountedItem) => {
+          return <ProductCard key={discountedItem.id} {...discountedItem} />;
+        })}
+      </ul>
+    </main>
+  );
+}
+export default Sales;

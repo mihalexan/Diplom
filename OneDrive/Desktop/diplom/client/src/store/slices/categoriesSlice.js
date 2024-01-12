@@ -1,25 +1,46 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { getAllCategories } from "../../requests/categoriesRequest";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+const url = "http://localhost:3333/categories/all";
 
-const categoriesSlice = createSlice({
+const initialState = {
+  categories: [],
+  status: null,
+  error: null,
+};
+
+export const getAllCategories = createAsyncThunk(
+  "categories/getAllCategories",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error("Error while getting all categories");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const categoriesSlice = createSlice({
   name: "categories",
-  initialState: {
-    status: null,
-    list: [],
-  },
+  initialState,
   reducers: {},
+
   extraReducers: (builder) => {
     builder
-      .addCase(getAllCategories.pending, (state, action) => {
+      .addCase(getAllCategories.pending, (state) => {
         state.status = "loading";
+        state.error = null;
       })
       .addCase(getAllCategories.fulfilled, (state, action) => {
-        state.status = "ready";
-
-        state.list = action.payload;
+        state.status = "fulfilled";
+        state.categories = action.payload;
       })
-      .addCase(getAllCategories.rejected, (state) => {
+      .addCase(getAllCategories.rejected, (state, action) => {
         state.status = "error ";
+        state.error = action.payload;
       });
   },
 });

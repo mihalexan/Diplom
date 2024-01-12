@@ -1,18 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import categoriesReducer from "./slices/categoriesSlice";
-import saleReducer from "./slices/saleSlice";
-import cartReducer from "./slices/cartSlice";
-import productsByCategoryReducer from "./slices/productsByCategory";
+import getDiscountReducer from "./slices/getDiscountSlice";
+import productsByCategoryReducer from "./slices/productsByCategorySlice";
 import allProductsReducer from "./slices/allProductsSlice";
-import filtersReducer from "./slices/filtersSlice";
+import singleProductReducer from "./slices/singlProductSlice";
+import postOrderReducer from "./slices/postOrderSlice";
+import productsBasketReducer from "./slices/basketSlice";
 
-export const store = configureStore({
+export default configureStore({
   reducer: {
     categories: categoriesReducer,
-    sale: saleReducer,
-    cart: cartReducer,
-    productsByCategory: productsByCategoryReducer,
-    allProducts: allProductsReducer,
-    filters: filtersReducer,
+    discountReceiver: getDiscountReducer,
+    products: allProductsReducer,
+    productsOfCategory: productsByCategoryReducer,
+    product: singleProductReducer,
+    order: postOrderReducer,
+    productsBasket: productsBasketReducer,
   },
 });

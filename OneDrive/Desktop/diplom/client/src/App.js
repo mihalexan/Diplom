@@ -1,38 +1,30 @@
-import React, { useEffect } from "react";
 import "../src/App.css";
-import { Routes, Route, useParams } from "react-router-dom";
-import Header from "./components/Header";
-import MainPage from "./pages/MainPage";
-import Categories from "./pages/Categories";
-import AllProducts from "./pages/AllProducts";
-import AllSales from "./pages/AllSales";
-import Basket from "./pages/Basket";
-import NotFound from "./pages/NotFound";
-import CategoriesItem from "./components/CategoriesItem";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllCategories } from "./requests/categoriesRequest";
-import Footer from "./components/Footer";
-import ProductsCategories from "./pages/ProductsCategories";
+import { Routes, Route } from "react-router-dom";
+import Header from "./layout/Header/Header";
+import Main from "./components/main/Main";
+import Basket from "./components/basket/Basket";
+import Sales from "./components/sales/Sales";
+import Footer from "./layout/Footer/Footer";
+import Categories from "./components/categories/Categories";
+import Products from "./components/products/Products";
+import ProductsByCategories from "./components/products/components/ProductsByCategories";
+import SingleProduct from "./components/products/SingleProduct";
+import NotFound from "./components/notFound/notFound";
 
 function App() {
-  const dispatch = useDispatch();
-  const categories = useSelector((state) => state.categories.list);
-
-  useEffect(() => {
-    dispatch(getAllCategories());
-  }, [dispatch]);
-
   return (
-    <div>
+    <div className="App">
       <Header />
       <Routes>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/" element={<Main />} />
         <Route path="/categories" element={<Categories />} />
-        <Route path="/all_products" element={<AllProducts />} />
-        <Route path="/all_sales" element={<AllSales />} />
         <Route path="/basket" element={<Basket />} />
-        <Route path="/*" element={<NotFound />} />
-        <Route path="/categories/:id" element={<ProductsCategories />} />
+        <Route path="/sales" element={<Sales />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="categories/:id" element={<ProductsByCategories />} />
+        <Route path="/products/:id" element={<SingleProduct />} />
+        <Route path="/products/:id" element={<SingleProduct />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>
