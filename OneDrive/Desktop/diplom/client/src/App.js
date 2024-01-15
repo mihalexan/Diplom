@@ -7,7 +7,7 @@ import Sales from "./components/sales/Sales";
 import Footer from "./layout/Footer/Footer";
 import Categories from "./components/categories/Categories";
 import Products from "./components/products/Products";
-import ProductsByCategories from "./components/products/components/ProductsByCategories";
+import ProductsByCategories from "./components/products/components/ProductsByCategory";
 import SingleProduct from "./components/products/SingleProduct";
 import NotFound from "./components/notFound/notFound";
 

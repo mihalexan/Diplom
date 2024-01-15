@@ -4,11 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
 import s from "../products/Products.module.css";
 import ProductCard from "../products/ProductCard";
-import { SaleSorting } from "./SaleSorting";
+
+import SortForm from "../FiltersForms/SortForm/SortForm";
+import FilterForm from "../FiltersForms/FilterForm/FilterForm";
 
 function Sales() {
   const products = useSelector(
-    (state) => state.products && state.products.products
+    (state) => state.products && state.products.list
   );
   const dispatch = useDispatch();
 
@@ -16,7 +18,9 @@ function Sales() {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  const discountedItems = products.filter((product) => product.discont_price);
+  const discountedItems =
+    products && products.filter((product) => product.discont_price);
+
   return (
     <main className={s.productsMain}>
       <div className={s.navWrapper}>
@@ -29,8 +33,10 @@ function Sales() {
         </Link>
       </div>
       <h4 className={s.title}>Discounted items</h4>
-
-      <SaleSorting />
+      <div style={{ display: "flex", marginBottom: "50px" }}>
+        <FilterForm />
+        <SortForm />
+      </div>
       <ul className={s.productWrapper}>
         {discountedItems.map((discountedItem) => {
           return <ProductCard key={discountedItem.id} {...discountedItem} />;

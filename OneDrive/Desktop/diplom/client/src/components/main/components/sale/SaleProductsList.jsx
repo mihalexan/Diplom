@@ -8,8 +8,10 @@ import "swiper/css/pagination";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
 
 function SaleProductsList() {
-  const products = useSelector((state) => state.products.products);
-  const saleProducts = products.filter((product) => product.discont_price);
+  const products = useSelector((state) => state.products.list);
+  const saleProducts = products
+    ? products.filter((product) => product.discont_price)
+    : [];
   return (
     <section className={s.saleProductSamples}>
       <div className={s.title}>

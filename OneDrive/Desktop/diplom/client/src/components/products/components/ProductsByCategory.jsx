@@ -4,9 +4,12 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProductsOfCategory } from "../../../store/slices/productsByCategorySlice";
 import { Sorting, filtredProducts } from "./Sorting";
+import FilterForm from "../../FiltersForms/FilterForm/FilterForm";
+import SaleForm from "../../FiltersForms/SaleForm/SaleForm";
+import SortForm from "../../FiltersForms/SortForm/SortForm";
 import ProductCard from "../ProductCard";
 
-function ProductsByCategories() {
+function ProductsByCategory() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchProductsOfCategory());
@@ -33,7 +36,12 @@ function ProductsByCategories() {
         <Link id={s.currentLink}>{productsOfCategory.category.title}</Link>
       </div>
       <h4 className={s.title}>{productsOfCategory.category.title}</h4>
-      <Sorting arrayOfProducts={categoryProducts} />
+      <div style={{ display: "flex", marginBottom: "50px" }}>
+        <FilterForm />
+        <SaleForm />
+        <SortForm arrayOfProducts={categoryProducts} />
+      </div>
+      {/*<Sorting arrayOfProducts={categoryProducts} />*/}
       <ul className={s.productWrapper}>
         {categoryProducts.map((product) => {
           return (
@@ -48,4 +56,4 @@ function ProductsByCategories() {
     </main>
   );
 }
-export default ProductsByCategories;
+export default ProductsByCategory;

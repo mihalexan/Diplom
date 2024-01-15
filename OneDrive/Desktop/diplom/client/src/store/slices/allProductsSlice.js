@@ -24,10 +24,57 @@ export const getAllProducts = createAsyncThunk(
 
 export const allProductsSlice = createSlice({
   name: "products",
-  initialState,
-  reducers: {},
+  initialState: {
+    status: null,
+    list: [],
+  },
 
-  extraReducers: (builder) => {
+  reducers: {
+    sortProducts(state, action) {
+      if (action.payload === "low-high") {
+        state.list.sort((a, b) => a.price - b.price);
+      } else if (action.payload === "high-low") {
+        state.list.sort((a, b) => b.price - a.price);
+      } else if (action.payload === "titleAsc") {
+        state.list.sort((a, b) => a.title.localeCompare(b.title));
+      } else if (action.payload === "titleDesc") {
+        state.list.sort((a, b) => b.title.localeCompare(a.title));
+      } else {
+        state.list.sort((a, b) => a.id - b.id);
+      }
+    },
+
+    filterPrice(state, action) {
+      const { minPrice, maxPrice } = action.payload;
+      state.list.map((el) => {
+        let actualPrice = el.discont_price || el.price;
+        if (actualPrice >= minPrice && actualPrice <= maxPrice) {
+          el.showProductFilter = true;
+        } else {
+          el.showProductFilter = false;
+        }
+        return el;
+      });
+    },
+
+    discountProducts(state, action) {
+      if (action.payload) {
+        state.list.map((el) => {
+          if (el.discont_price === null) {
+            el.showProduct = false;
+          }
+          return el;
+        });
+      } else {
+        state.list.map((el) => {
+          el.showProduct = true;
+          return el;
+        });
+      }
+    },
+  },
+
+  extraReducers: (builder) =>
     builder
       .addCase(getAllProducts.pending, (state) => {
         state.status = "loading";
@@ -35,13 +82,18 @@ export const allProductsSlice = createSlice({
       })
       .addCase(getAllProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.products = action.payload;
+        state.list = action.payload.map((el) => ({
+          ...el,
+          showProduct: true,
+          showProductFilter: true,
+        }));
       })
       .addCase(getAllProducts.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.payload;
-      });
-  },
+      }),
 });
 
+export const { filterPrice, sortProducts, discountProducts } =
+  allProductsSlice.actions;
 export default allProductsSlice.reducer;

@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   nameValidation,
@@ -12,20 +13,36 @@ import { postDiscount } from "../../../../store/slices/getDiscountSlice";
 
 function GetDiscount() {
   const dispatch = useDispatch();
+  const [submitStatus, setSubmitStatus] = useState(null);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({ mode: "all" });
-  function getDiscount(data) {
-    createDiscountReceiver(data);
-    dispatch(postDiscount());
-    reset();
-  }
+
+  const handleClick = () => {
+    // Обработка клика на кнопку
+    setIsButtonClicked(true);
+    // Остальной код...
+  };
+
+  const getDiscount = async (data) => {
+    setSubmitStatus("submitting");
+    try {
+      await createDiscountReceiver(data);
+      await dispatch(postDiscount());
+      setSubmitStatus("request submit");
+      reset();
+    } catch (error) {
+      console.error("Error submitting discount request:", error);
+      setSubmitStatus("error");
+    }
+  };
 
   return (
-    <section className={s.getDiscount}>
+    <section className={`${s.getDiscount} ${isButtonClicked ? s.clicked : ""}`}>
       <h4>5% off on the first order</h4>
       <div className={s.sectionWrrapper}>
         <img src={getDiscountFoto} />
@@ -36,7 +53,15 @@ function GetDiscount() {
             {...register("name", nameValidation)}
           />
           {errors.name && (
-            <p style={{ color: "#02393e" }}>{errors.name.message}</p>
+            <p
+              style={{
+                color: "var(--green, #393)",
+                fontSize: "1.2em",
+                textAlign: "center",
+              }}
+            >
+              {errors.name.message}
+            </p>
           )}
           <input
             type="text"
@@ -44,7 +69,15 @@ function GetDiscount() {
             {...register("phone", phoneValidation)}
           />
           {errors.phone && (
-            <p style={{ color: "#02393e" }}>{errors.phone.message}</p>
+            <p
+              style={{
+                color: "var(--green, #393)",
+                fontSize: "1.2em",
+                textAlign: "center",
+              }}
+            >
+              {errors.phone.message}
+            </p>
           )}
           <input
             type="text"
@@ -52,9 +85,36 @@ function GetDiscount() {
             {...register("email", emailValidation)}
           />
           {errors.email && (
-            <p style={{ color: "#02393e" }}>{errors.email.message}</p>
+            <p
+              style={{
+                color: "var(--green, #393)",
+                fontSize: "1.2em",
+                textAlign: "center",
+              }}
+            >
+              {errors.email.message}
+            </p>
           )}
-          <button type="submit">Get a discount</button>
+          <button
+            type="submit"
+            onClick={handleClick}
+            className={`${s.discountButton} ${
+              isButtonClicked ? s.clicked : ""
+            }`}
+          >
+            Get a discount
+          </button>
+          {submitStatus && (
+            <p
+              style={{
+                color: "var(--green, #393)",
+                fontSize: "1.2em",
+                textAlign: "center",
+              }}
+            >
+              {submitStatus}
+            </p>
+          )}
         </form>
       </div>
     </section>
