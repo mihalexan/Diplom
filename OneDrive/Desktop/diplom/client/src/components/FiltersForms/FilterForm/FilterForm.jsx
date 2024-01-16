@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { filterPrice } from "../../../store/slices/allProductsSlice";
 import { useDispatch } from "react-redux";
-import s from "./FilterForm.module.css";
+import s from "../FilterForms.module.css";
 
 function FilterForm() {
   const dispatch = useDispatch();

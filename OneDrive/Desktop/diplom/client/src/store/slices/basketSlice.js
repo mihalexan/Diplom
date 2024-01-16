@@ -25,6 +25,7 @@ export const productsBasketSlice = createSlice({
         // If the product already exists, update its quantity
         state.productsBasket[existingProductIndex].quantity += quantity || 1;
       }
+
       const uniqProds = Array.from(
         new Set(state.productsBasket.map((el) => el.id))
       ).map((id) => {

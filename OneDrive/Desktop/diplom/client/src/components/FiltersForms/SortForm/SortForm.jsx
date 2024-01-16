@@ -1,4 +1,4 @@
-import s from "./SortForm.module.css";
+import s from "../FilterForms.module.css";
 import { sortProducts } from "../../../store/slices/allProductsSlice";
 import { useDispatch } from "react-redux";
 

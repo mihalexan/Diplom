@@ -12,7 +12,7 @@ function Categories() {
     dispatch(getAllCategories());
   }, [dispatch]);
   return (
-    <main className={s.categoriesMain}>
+    <>
       <div className={s.navWrapper}>
         <Link className={s.links} to="/">
           Main page
@@ -28,7 +28,7 @@ function Categories() {
           <CategoryCard key={category.id} {...category} />
         ))}
       </ul>
-    </main>
+    </>
   );
 }
 export default Categories;

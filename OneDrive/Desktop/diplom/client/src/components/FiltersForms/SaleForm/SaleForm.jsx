@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import s from "./SaleForm.module.css";
+import s from "../FilterForms.module.css";
 import { discountProducts } from "../../../store/slices/allProductsSlice";
 
 function SaleForm() {

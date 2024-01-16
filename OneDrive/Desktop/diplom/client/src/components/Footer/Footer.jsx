@@ -1,7 +1,6 @@
 import React from "react";
 import s from "./Footer.module.css";
 import { Link } from "react-router-dom";
-
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 
@@ -23,7 +22,7 @@ const Footer = () => {
             <div className={s.socials}>
               <Link
                 className={s.icon}
-                to={"https://www.instagram.com/telran.de/"}
+                to={"https://www.instagram.com/startainstitute/"}
                 target="_blank"
               >
                 <InstagramIcon sx={{ color: "black" }} />
@@ -47,7 +46,9 @@ const Footer = () => {
 
           <div className={s.contacts_item}>
             <p className={s.title_of_contacts}>Working Hours</p>
-            <p className={s.link}>24 hours a day</p>
+            <Link to="/notFound" className={s.link}>
+              24 hours a day
+            </Link>
           </div>
         </div>
         <div className={s.map}>

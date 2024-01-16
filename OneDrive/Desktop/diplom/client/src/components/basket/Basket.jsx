@@ -24,7 +24,7 @@ function Basket() {
   const productsInCart = useSelector(
     (state) => state.productsBasket.productsBasket
   );
-  const prodCount = useSelector(
+  const productsCount = useSelector(
     (state) => state.productsBasket.productsBasket.length
   );
   const dispatch = useDispatch();
@@ -107,7 +107,7 @@ function Basket() {
           <div className={s.orderDetailsPart}>
             <h5>Order details</h5>
             <p>
-              {prodCount} {prodCount === 1 ? "item" : "items"}
+              {productsCount} {productsCount === 1 ? "item" : "items"}
             </p>
             <div className={s.totalCost}>
               <p>Total</p>

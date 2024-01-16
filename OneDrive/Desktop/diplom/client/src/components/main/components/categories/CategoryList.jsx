@@ -9,6 +9,12 @@ import { Navigation, Pagination } from "swiper/modules";
 
 function CategoryList() {
   const categories = useSelector((state) => state.categories.categories);
+
+  if (!categories || categories.length === 0) {
+    // Обработка случая, когда нет категорий
+    return null;
+  }
+
   return (
     <section className={s.categoriesSamples}>
       <div className={s.title}>
@@ -56,20 +62,7 @@ function CategoryList() {
             })}
           </ul>
         </Swiper>
-        <ul className={s.categoryMobileWrapper}>
-          {categories.map((category) => (
-            <CategoryCard key={category.id} {...category} />
-          ))}
-        </ul>
       </div>
-      <ul className={s.categoryMobileWrapper}>
-        {categories.map((category) => (
-          <CategoryCard key={category.id} {...category} />
-        ))}
-      </ul>
-      <Link className={s.mobileLink} to="/categories">
-        All categories
-      </Link>
     </section>
   );
 }

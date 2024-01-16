@@ -1,10 +1,10 @@
 import "../src/App.css";
 import { Routes, Route } from "react-router-dom";
-import Header from "./layout/Header/Header";
+import Header from "./components/Header/Header";
 import Main from "./components/main/Main";
 import Basket from "./components/basket/Basket";
 import Sales from "./components/sales/Sales";
-import Footer from "./layout/Footer/Footer";
+import Footer from "./components/Footer/Footer";
 import Categories from "./components/categories/Categories";
 import Products from "./components/products/Products";
 import ProductsByCategories from "./components/products/components/ProductsByCategory";
@@ -24,7 +24,7 @@ function App() {
         <Route path="categories/:id" element={<ProductsByCategories />} />
         <Route path="/products/:id" element={<SingleProduct />} />
         <Route path="/products/:id" element={<SingleProduct />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/notFound" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>

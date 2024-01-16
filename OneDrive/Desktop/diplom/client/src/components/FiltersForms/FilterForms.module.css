@@ -1,3 +1,28 @@
+.inputs {
+  display: flex;
+  align-items: center;
+}
+
+.priceText {
+  color: var(--txt-black, #282828);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 130%;
+  margin-right: 18px;
+}
+
+.input {
+  border-radius: var(--radius-small, 6px);
+  border: 1px solid var(--grey-divider, #ddd);
+  padding: 8px 16px;
+  outline: none;
+}
+
+.price {
+  padding: 8px 16px;
+  margin-right: 18px; /* Adjust the margin as needed */
+}
+
 .discountedItems,
 .inputContainer {
   display: flex;
@@ -37,4 +62,25 @@
 .checkmark {
   color: white;
   font-size: 43px;
+}
+
+.sortForm {
+  display: flex;
+  align-items: center;
+}
+
+.sorted {
+  color: var(--txt-black, #282828);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 130%;
+  margin-right: 18px;
+  margin-left: 40px;
+}
+
+.select {
+  padding: 13px 26px;
+  border-radius: var(--radius-small, 6px);
+  border: 1px solid var(--grey-divider, #ddd);
+  outline: none;
 }

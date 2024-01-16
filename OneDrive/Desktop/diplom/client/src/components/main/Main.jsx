@@ -18,7 +18,7 @@ function Main() {
   }, [dispatch]);
 
   return (
-    <main>
+    <main className={s.mainContainer}>
       <section className={s.top}>
         <h2 className={s.title}>Amazing Discounts on Garden Products!</h2>
         <button
