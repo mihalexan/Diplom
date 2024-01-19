@@ -10,9 +10,11 @@ import ProductCard from "./ProductCard";
 function Products() {
   const products = useSelector((state) => state.products.list);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getAllProducts());
   }, [dispatch]);
+
   return (
     <main className={s.productsMain}>
       <div className={s.navWrapper}>
@@ -31,9 +33,11 @@ function Products() {
         <SortForm />
       </div>
       <ul className={s.productWrapper}>
-        {products.map((product) => {
-          return <ProductCard key={product.id} {...product} />;
-        })}
+        {products
+          ?.filter((el) => el.showProduct && el.showProductFilter)
+          .map((product) => {
+            return <ProductCard key={product.id} {...product} />;
+          })}
       </ul>
     </main>
   );

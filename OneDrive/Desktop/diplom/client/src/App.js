@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Main from "./components/main/Main";
 import Basket from "./components/basket/Basket";
-import Sales from "./components/sales/Sales";
+import Sales from "./components/allSales/Sales";
 import Footer from "./components/Footer/Footer";
 import Categories from "./components/categories/Categories";
 import Products from "./components/products/Products";

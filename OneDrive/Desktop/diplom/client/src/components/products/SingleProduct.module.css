@@ -130,6 +130,13 @@
 .toCartBtn:hover {
   background-color: var(--txt-black, #282828);
 }
+.toCartBtn.added {
+  background: var(--txt-white, #fff);
+  color: var(--black, #282828);
+  cursor: not-allowed; /* предотвращает повторное нажатие */
+  border-radius: var(--radius-small, 6px);
+  border-color: #282828;
+}
 .description {
   color: var(--txt-black, #282828);
   font-size: 20px;
@@ -143,4 +150,64 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 130%;
+}
+@media screen and (max-width: 1024px) {
+  .singleProductWrapper {
+    grid-template-columns: 1fr;
+    row-gap: 32px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .singleProductImage {
+    max-width: 100%;
+    height: auto;
+  }
+  .singleProductTitle {
+    font-size: 32px;
+  }
+
+  .discountPrice {
+    font-size: 48px;
+  }
+
+  .price {
+    font-size: 32px;
+  }
+
+  .discount {
+    font-size: 16px;
+  }
+
+  .description {
+    font-size: 16px;
+  }
+
+  .singleProductDescription {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  .navWrapper {
+    margin-bottom: 20px;
+  }
+
+  .singleProductTitle {
+    margin-bottom: 20px;
+  }
+
+  .priceBlock {
+    margin-bottom: 20px;
+  }
+
+  .basketSetupBar {
+    gap: 16px;
+  }
+
+  .quantityBlock button {
+    padding: 10px;
+  }
+
+  .toCartBtn {
+    font-size: 16px;
+  }
 }

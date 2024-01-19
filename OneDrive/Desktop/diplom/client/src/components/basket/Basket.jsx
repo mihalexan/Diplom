@@ -1,7 +1,7 @@
 import s from "./Basket.module.css";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   nameValidation,
@@ -16,7 +16,7 @@ import {
   minus,
   eraser,
 } from "../../store/slices/basketSlice";
-import ModalWindow from "./ModalWindow";
+import ModalWindow from "./ModalWindow/ModalWindow.jsx";
 import ProductInCart from "./ProductInCart.jsx";
 
 function Basket() {
@@ -57,12 +57,9 @@ function Basket() {
     dispatch(eraser());
     reset();
   }
-  let totalPrice = productsInCart
-    .reduce((total, prod) => {
-      return (
-        total +
-        (prod.discont_price * prod.quantity || prod.price * prod.quantity)
-      );
+  let totalSum = productsInCart
+    .reduce((acc, el) => {
+      return acc + (el.discont_price * el.quantity || el.price * el.quantity);
     }, 0)
     .toFixed(2);
 
@@ -74,7 +71,7 @@ function Basket() {
   } = useForm({ mode: "all" });
 
   return (
-    <main className={s.basketMain}>
+    <div className={s.main}>
       <div className={s.titleWrapper}>
         <h4>Shopping cart</h4>
         <div className={s.grayLine}></div>
@@ -111,7 +108,7 @@ function Basket() {
             </p>
             <div className={s.totalCost}>
               <p>Total</p>
-              <p id={s.totalPrice}>${totalPrice}</p>
+              <p id={s.totalPrice}>${totalSum}</p>
             </div>
             <form onSubmit={handleSubmit(getOrder)} className={s.formWrapper}>
               <input
@@ -168,7 +165,7 @@ function Basket() {
         </div>
       )}
       {marker !== false ? <ModalWindow close={closeModalWindow} /> : null}
-    </main>
+    </div>
   );
 }
 export default Basket;

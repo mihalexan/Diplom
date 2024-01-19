@@ -1,4 +1,4 @@
-.basketMain {
+.main {
   padding: 40px 2.5% 0 2.5%;
 }
 .titleWrapper {
@@ -159,6 +159,9 @@
   border-radius: var(--radius-big, 12px);
   background: var(--light-grey, #f1f3f4);
   padding: 32px;
+  height: fit-content;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 .orderDetailsPart h5 {
   color: var(--txt-black, #282828);
@@ -214,41 +217,4 @@ form button {
 }
 .errorMessage {
   font-size: 10px;
-}
-.modalWindowWrapper {
-  position: fixed;
-  width: 100vw;
-  height: 285%;
-  top: 0;
-  left: 0;
-  background-color: rgba(40, 40, 40, 0.4);
-  display: flex;
-}
-.modalWindow {
-  max-width: 38%;
-  margin: 260px auto auto auto;
-  border-radius: var(--radius-big, 12px);
-  background: var(--green, #393);
-  padding: 32px 2.2%;
-  display: flex;
-  gap: 16px;
-  position: relative;
-}
-.modalWindow h5,
-h6 {
-  color: var(--txt-white, #fff);
-  font-size: 2.5rem;
-  font-weight: 600;
-  line-height: 110%;
-}
-.modalWindow h6 {
-  font-size: 1.25rem;
-  margin-top: 24px;
-  margin-right: 10%;
-}
-.modalWindow img {
-  position: absolute;
-  right: 32px;
-  top: 32px;
-  cursor: pointer;
 }

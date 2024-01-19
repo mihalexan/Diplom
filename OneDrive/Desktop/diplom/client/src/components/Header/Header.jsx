@@ -9,7 +9,7 @@ import closeAside from "../../assets/images/basket/x.svg";
 
 function Header() {
   const navigate = useNavigate();
-  const prodCount = useSelector(
+  const productsCount = useSelector(
     (state) => state.productsBasket.productsBasket.length
   );
 
@@ -51,7 +51,9 @@ function Header() {
             navigate("/basket");
           }}
         />
-        {prodCount > 0 ? <p className={s.prodCount}>{prodCount}</p> : null}
+        {productsCount > 0 ? (
+          <p className={s.productsCount}>{productsCount}</p>
+        ) : null}
       </header>
       <header className={s.headerMobile}>
         <div className={s.headerWrapper}>
@@ -72,8 +74,8 @@ function Header() {
                 navigate("/basket");
               }}
             />
-            {prodCount > 0 ? (
-              <p className={s.prodCountMobile}>{prodCount}</p>
+            {productsCount > 0 ? (
+              <p className={s.prodCountMobile}>{productsCount}</p>
             ) : null}
           </div>
           <img

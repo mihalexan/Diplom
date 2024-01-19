@@ -66,3 +66,33 @@
   background: var(--black, #282828);
   color: var(--white, #fff);
 }
+@media (max-width: 768px) {
+  .getDiscount {
+    padding: 24px 5%;
+  }
+
+  .sectionWrrapper {
+    flex-direction: column-reverse;
+    gap: 16px;
+  }
+
+  .sectionWrrapper img {
+    position: static;
+    max-width: 100%;
+  }
+
+  .formWrapper {
+    margin: 16px 0 16px 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 414px) {
+  .getDiscount {
+    padding: 24px 2.5%;
+  }
+
+  .formWrapper {
+    margin: 16px 0 16px 0;
+  }
+}

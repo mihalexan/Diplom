@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
+  align-items: center;
 }
 #mainLogo {
   width: 5%;
@@ -15,14 +16,17 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4%;
+  gap: 30px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 130%;
 }
 a {
   color: #000;
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 130%;
   text-decoration: none;
+}
+a:hover {
+  color: var(--green, #393);
 }
 #basket {
   width: 4.4%;
@@ -30,7 +34,7 @@ a {
   aspect-ratio: 1;
   cursor: pointer;
 }
-.prodCount {
+.productsCount {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,9 +52,7 @@ a {
   left: 93.1%;
   top: 44px;
 }
-a:hover {
-  color: var(--green, #393);
-}
+
 .headerMobile {
   padding: 12px 2%;
   display: none;
@@ -134,9 +136,16 @@ aside,
   font-size: 24px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1024px) {
   .headerDesktop {
-    padding: 30px 2.5%;
+    padding: 15px 2.5%;
+  }
+  nav {
+    gap: 15px;
+  }
+  .productsCount {
+    font-size: 1vw;
+    left: 91%;
   }
 }
 @media (max-width: 768px) {
@@ -145,5 +154,25 @@ aside,
   }
   .headerMobile {
     display: block;
+  }
+  #mainLogo {
+    width: 10%;
+  }
+  #basket {
+    width: 8%;
+  }
+  .productsCount {
+    display: none;
+  }
+}
+@media (max-width: 414px) {
+  .headerDesktop {
+    display: none;
+  }
+  .headerMobile {
+    display: block;
+  }
+  .prodCountMobile {
+    font-size: 1.5vw;
   }
 }

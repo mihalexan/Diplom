@@ -1,53 +1,56 @@
+import React, { useState } from "react";
 import s from "./Products.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchSingleProduct } from "../../store/slices/singlProductSlice";
 import { addToCart } from "../../store/slices/basketSlice";
 
-function ProductCard(product) {
+function ProductCard(el) {
   const url = "http://localhost:3333";
-  const discountValue = Math.floor(
-    100 - (product.discont_price * 100) / product.price
-  );
+  const discountValue = Math.floor(100 - (el.discont_price * 100) / el.price);
   const dispatch = useDispatch();
   function goToSingleProduct() {
-    dispatch(fetchSingleProduct({ id: product.id }));
+    dispatch(fetchSingleProduct({ id: el.id }));
   }
-  const addHandler = (product) => {
-    dispatch(addToCart(product));
+  const [addedToCart, setAddedToCart] = useState(false);
+
+  const addHandler = (el) => {
+    dispatch(addToCart(el));
+    setAddedToCart(true);
   };
+
   return (
-    <li className={s.productCard} key={product.id}>
-      <Link to={`/products/${product.id}`}>
+    <li className={s.productCard} key={el.id}>
+      <Link to={`/products/${el.id}`}>
         <img
-          src={!product.id ? product.image : url + product.image}
+          src={!el.id ? el.image : url + el.image}
           className={s.productImg}
-          onClick={() => goToSingleProduct(product.id)}
+          onClick={() => goToSingleProduct(el.id)}
         />
       </Link>
       <div className={s.productDescription}>
-        <Link to={`/products/${product.id}`}>
+        <Link to={`/products/${el.id}`}>
           <span
             className={s.productTitle}
-            onClick={() => goToSingleProduct(product.id)}
+            onClick={() => goToSingleProduct(el.id)}
           >
-            {product.title}
+            {el.title}
           </span>
         </Link>
         <div className={s.priceWrapper}>
-          <p className={s.discountPrice}>
-            ${product.discont_price || product.price}
-          </p>
-          {product.discont_price ? (
-            <p className={s.price}>${product.price}</p>
-          ) : null}
+          <p className={s.discountPrice}>${el.discont_price || el.price}</p>
+          {el.discont_price ? <p className={s.price}>${el.price}</p> : null}
         </div>
-        {product.discont_price ? (
+        {el.discont_price ? (
           <p className={s.discount}>-{discountValue}%</p>
         ) : null}
       </div>
-      <button className={s.addToCartBtn} onClick={() => addHandler(product)}>
-        Add to cart
+      <button
+        className={`${s.addToCartBtn} ${addedToCart ? s.added : ""}`}
+        onClick={() => addHandler(el)}
+        disabled={addedToCart}
+      >
+        {addedToCart ? "Added" : "Add to cart"}
       </button>
     </li>
   );

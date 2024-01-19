@@ -4,14 +4,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
 import s from "../products/Products.module.css";
 import ProductCard from "../products/ProductCard";
-
 import SortForm from "../FiltersForms/SortForm/SortForm";
 import FilterForm from "../FiltersForms/FilterForm/FilterForm";
 
 function Sales() {
-  const products = useSelector(
-    (state) => state.products && state.products.list
-  );
+  const products = useSelector((state) => state.products.list);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,9 +35,11 @@ function Sales() {
         <SortForm />
       </div>
       <ul className={s.productWrapper}>
-        {discountedItems.map((discountedItem) => {
-          return <ProductCard key={discountedItem.id} {...discountedItem} />;
-        })}
+        {discountedItems
+          ?.filter((el) => el.showProduct && el.showProductFilter)
+          .map((discountedItem) => {
+            return <ProductCard key={discountedItem.id} {...discountedItem} />;
+          })}
       </ul>
     </main>
   );

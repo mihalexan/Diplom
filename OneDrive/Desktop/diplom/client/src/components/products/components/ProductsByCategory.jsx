@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProductsOfCategory } from "../../../store/slices/productsByCategorySlice";
-import { Sorting, filtredProducts } from "./Sorting";
 import FilterForm from "../../FiltersForms/FilterForm/FilterForm";
 import SaleForm from "../../FiltersForms/SaleForm/SaleForm";
 import SortForm from "../../FiltersForms/SortForm/SortForm";
@@ -11,9 +10,11 @@ import ProductCard from "../ProductCard";
 
 function ProductsByCategory() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchProductsOfCategory());
   }, [dispatch]);
+
   let { productsOfCategory } = useSelector((state) => state.productsOfCategory);
 
   // Проверка наличия данных перед их использованием
@@ -41,7 +42,6 @@ function ProductsByCategory() {
         <SaleForm />
         <SortForm arrayOfProducts={categoryProducts} />
       </div>
-      {/*<Sorting arrayOfProducts={categoryProducts} />*/}
       <ul className={s.productWrapper}>
         {categoryProducts.map((product) => {
           return (

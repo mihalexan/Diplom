@@ -46,15 +46,20 @@ main h2 {
   .title {
     font-size: 68px;
   }
-}
-@media (max-width: 400px) {
-  .top {
-    padding: 5px 2% 100px 2%;
+  .btnCheckOut {
+    padding: 4vh 4vw;
+    font-size: 1rem;
   }
+}
+@media screen and (max-width: 412px) {
   .title {
     font-size: 30px;
   }
   .btnCheckOut {
-    font-size: 90px;
+    margin: 20px auto 0;
+    font-size: 1rem;
+  }
+  .top {
+    text-align: center;
   }
 }

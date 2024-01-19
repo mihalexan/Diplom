@@ -13,8 +13,11 @@ function SingleProduct() {
   function goToCategoryProducts() {
     dispatch(fetchProductsOfCategory({ id: singleProduct.categoryId }));
   }
+  const [addedToCart, setAddedToCart] = useState(false);
+
   const addHandler = (product, quantity) => {
     dispatch(addToCart(product, quantity));
+    setAddedToCart(true);
   };
   let singleProduct = useSelector((state) => state.product.product[0]);
   const [quantity, setQantity] = useState(1);
@@ -101,10 +104,11 @@ function SingleProduct() {
               <button onClick={() => plusHandler()}>+</button>
             </div>
             <button
-              className={s.toCartBtn}
+              className={`${s.toCartBtn} ${addedToCart ? s.added : ""}`}
               onClick={() => addHandler(singleProduct, quantity)}
+              disabled={addedToCart}
             >
-              Add to cart
+              {addedToCart ? "Added" : "Add to cart"}
             </button>
           </div>
           <h5 className={s.description}>Description</h5>

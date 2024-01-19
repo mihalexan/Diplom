@@ -51,6 +51,8 @@
 }
 .productImg {
   width: 100%;
+  max-width: 100%;
+  height: auto;
   aspect-ratio: 1.1;
   cursor: pointer;
   border-top-left-radius: var(--radius-big, 12px);
@@ -135,4 +137,39 @@
   background: var(--txt-white, #fff);
   color: var(--black, #282828);
   cursor: pointer;
+}
+.addToCartBtn.added {
+  background: var(--txt-white, #fff);
+  color: var(--black, #282828);
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 768px) {
+  .productsMain {
+    padding: 40px 2.5% 0 2.5%;
+  }
+  .btnCheckOut {
+    padding: 4vh 4vw;
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  .productDescription {
+    width: 100%;
+    padding: 0 16px 16px 16px;
+  }
+  .addToCartBtn {
+    bottom: 16px;
+  }
+}
+
+@media screen and (max-width: 412px) {
+  .title {
+    font-size: 30px;
+  }
+
+  .btnCheckOut {
+    margin-left: 33vw;
+    font-size: 1rem;
+  }
 }

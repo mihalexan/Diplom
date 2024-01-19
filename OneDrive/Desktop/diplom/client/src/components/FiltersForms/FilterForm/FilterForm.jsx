@@ -25,7 +25,7 @@ function FilterForm() {
       value = 0;
     }
     setMaxPrice(value);
-    handleChange(value, maxPrice);
+    handleChange(minPrice, value);
   };
 
   return (
