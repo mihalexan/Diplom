@@ -7,9 +7,10 @@ import { getAllCategories } from "../../store/slices/categoriesSlice";
 import { getAllProducts } from "../../store/slices/allProductsSlice";
 import GetDiscount from "./components/getDiscount/GetDiscount";
 import SaleProductsList from "./components/sale/SaleProductsList";
+import { useRef } from "react";
 
 function Main() {
-  const navigate = useNavigate();
+  const saleProductsRef = useRef();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +25,10 @@ function Main() {
         <button
           className={s.btnCheckOut}
           onClick={() => {
-            navigate("/sales");
+            saleProductsRef.current.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
           }}
         >
           Check out
@@ -32,7 +36,7 @@ function Main() {
       </section>
       <CategoryList />
       <GetDiscount />
-      <SaleProductsList />
+      <SaleProductsList ref={saleProductsRef} />
     </main>
   );
 }

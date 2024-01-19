@@ -1,4 +1,4 @@
-import s from "../Products.module.css";
+import s from "./ProductsByCategory.module.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,7 +6,7 @@ import { fetchProductsOfCategory } from "../../../store/slices/productsByCategor
 import FilterForm from "../../FiltersForms/FilterForm/FilterForm";
 import SaleForm from "../../FiltersForms/SaleForm/SaleForm";
 import SortForm from "../../FiltersForms/SortForm/SortForm";
-import ProductCard from "../ProductCard";
+import ProductCard from "../ProductCard/ProductCard";
 
 function ProductsByCategory() {
   const dispatch = useDispatch();
@@ -17,7 +17,6 @@ function ProductsByCategory() {
 
   let { productsOfCategory } = useSelector((state) => state.productsOfCategory);
 
-  // Проверка наличия данных перед их использованием
   if (!productsOfCategory || !productsOfCategory.data) {
     return <div>Loading...</div>;
   }
@@ -29,12 +28,12 @@ function ProductsByCategory() {
         <Link className={s.links} to="/">
           Main page
         </Link>
-        <div className={s.greyLine}></div>
+        <div className={s.line}></div>
         <Link className={s.links} to="/categories">
           Categories
         </Link>
-        <div className={s.greyLine}></div>
-        <Link id={s.currentLink}>{productsOfCategory.category.title}</Link>
+        <div className={s.line}></div>
+        <Link id={s.activeLink}>{productsOfCategory.category.title}</Link>
       </div>
       <h4 className={s.title}>{productsOfCategory.category.title}</h4>
       <div style={{ display: "flex", marginBottom: "50px" }}>

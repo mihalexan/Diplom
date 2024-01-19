@@ -1,7 +1,6 @@
-import s from "./Basket.module.css";
+import s from "./ProductInCart.module.css";
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import deleteIcon from "../../assets/images/basket/x.svg";
+import deleteIcon from "../../../assets/images/basket/x.svg";
 
 function ProductInCart({
   productInCart,
@@ -24,15 +23,15 @@ function ProductInCart({
   };
 
   return (
-    <div className={s.productInCart}>
+    <div className={s.productsInCart}>
       <img
         src={url + productInCart.image}
-        className={s.productInCartImg}
+        className={s.productsInCartImg}
         alt="product-image"
       />
       <div className={s.productInfo}>
         <h5>{productInCart.title}</h5>
-        <div className={s.productProperties}>
+        <div className={s.propertyList}>
           <div className={s.productCounter}>
             <button onClick={() => prodMinusHandler(productInCart.id)}>
               -

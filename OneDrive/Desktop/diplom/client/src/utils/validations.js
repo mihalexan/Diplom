@@ -21,11 +21,11 @@ export const phoneValidation = {
   },
   minLength: {
     value: 11,
-    message: "You should have at least 11 symbols in your phone number",
+    message: "Phone number should have at least 11 digits",
   },
   maxLength: {
-    value: 13,
-    message: "You have limit up to 13 symbols in your phone number",
+    value: 15,
+    message: "Phone number should not exceed 15 digits",
   },
 };
 export const emailValidation = {

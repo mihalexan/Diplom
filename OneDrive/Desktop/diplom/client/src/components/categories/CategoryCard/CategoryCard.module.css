@@ -1,0 +1,26 @@
+.categoryCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+.categoryCard img {
+  width: 100%;
+  border-radius: 12px;
+  aspect-ratio: 1.5;
+  cursor: pointer;
+}
+
+.categoryImg {
+  width: 22vw;
+  height: 22vw;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.categoryTitle {
+  color: var(--txt-black, #282828);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 130%;
+  cursor: pointer;
+}

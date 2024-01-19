@@ -11,7 +11,6 @@ function CategoryList() {
   const categories = useSelector((state) => state.categories.categories);
 
   if (!categories || categories.length === 0) {
-    // Обработка случая, когда нет категорий
     return null;
   }
 

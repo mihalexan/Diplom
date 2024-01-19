@@ -7,17 +7,17 @@ import {
   nameValidation,
   phoneValidation,
   emailValidation,
-} from "../../utils/validations";
-import { createOrder } from "../../utils/basket/createOrder";
-import { postOrder } from "../../store/slices/postOrderSlice";
+} from "../../../utils/validations.js";
+import { createOrder } from "../Cart/createOrder.js";
+import { postOrder } from "../../../store/slices/postOrderSlice.js";
 import {
   deleteFromCart,
   plus,
   minus,
   eraser,
-} from "../../store/slices/basketSlice";
-import ModalWindow from "./ModalWindow/ModalWindow.jsx";
-import ProductInCart from "./ProductInCart.jsx";
+} from "../../../store/slices/basketSlice.js";
+import ModalWindow from "../ModalWindow/ModalWindow.jsx";
+import ProductInCart from "../ProductsInCart/ProductInCart.jsx";
 
 function Basket() {
   const navigate = useNavigate();
@@ -74,12 +74,12 @@ function Basket() {
     <div className={s.main}>
       <div className={s.titleWrapper}>
         <h4>Shopping cart</h4>
-        <div className={s.grayLine}></div>
+        <div className={s.line}></div>
         <button onClick={() => navigate(-1)}>Back to the store</button>
       </div>
       {productsInCart.length === 0 ? (
-        <div className={s.basketEmpty}>
-          <h5 className={s.basketMessage}>
+        <div className={s.emptyCart}>
+          <h5 className={s.message}>
             Looks like you have no items in your basket currently.
           </h5>
           <button onClick={() => navigate("/products")}>
@@ -87,8 +87,8 @@ function Basket() {
           </button>
         </div>
       ) : (
-        <div className={s.basket}>
-          <div className={s.productsPart}>
+        <div className={s.cart}>
+          <div className={s.products}>
             {productsInCart.map((productInCart) => {
               return (
                 <ProductInCart
@@ -101,7 +101,7 @@ function Basket() {
               );
             })}
           </div>
-          <div className={s.orderDetailsPart}>
+          <div className={s.orderDetails}>
             <h5>Order details</h5>
             <p>
               {productsCount} {productsCount === 1 ? "item" : "items"}

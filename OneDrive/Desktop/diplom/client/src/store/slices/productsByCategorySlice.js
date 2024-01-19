@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import loadingIcon from "../../assets/images/loading_icon.svg";
+import loading from "../../assets/images/loading.svg";
 
 const initialState = {
   productsByCategory: {
@@ -12,7 +12,7 @@ const initialState = {
         title: "loading...",
         price: " loading...",
         discont_price: null,
-        image: loadingIcon,
+        image: loading,
       },
     ],
   },

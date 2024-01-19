@@ -1,6 +1,6 @@
-import s from "./Categories.module.css";
+import s from "./CategoryCard.module.css";
 import { useDispatch } from "react-redux";
-import { fetchProductsOfCategory } from "../../store/slices/productsByCategorySlice";
+import { fetchProductsOfCategory } from "../../../store/slices/productsByCategorySlice";
 import { Link } from "react-router-dom";
 
 function CategoryCard({ id, title, image }) {

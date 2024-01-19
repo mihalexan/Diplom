@@ -1,4 +1,4 @@
-import { order } from "../../utils/basket/createOrder";
+import { order } from "../../components/basket/Cart/createOrder";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const url = "http://localhost:3333/order/send";

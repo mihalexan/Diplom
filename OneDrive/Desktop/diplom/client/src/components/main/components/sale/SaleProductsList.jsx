@@ -1,19 +1,20 @@
 import s from "./SaleProducts.module.css";
+import { forwardRef } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import ProductCard from "../../../products/ProductCard";
+import ProductCard from "../../../products/ProductCard/ProductCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay, Navigation } from "swiper/modules";
 
-function SaleProductsList() {
+const SaleProductsList = forwardRef((props, ref) => {
   const products = useSelector((state) => state.products.list);
   const saleProducts = products
     ? products.filter((product) => product.discont_price)
     : [];
   return (
-    <section className={s.saleProductSamples}>
+    <section className={s.saleProductSamples} ref={ref}>
       <div className={s.title}>
         <h4>Sale</h4>
         <div className={s.line}></div>
@@ -47,5 +48,5 @@ function SaleProductsList() {
       </Swiper>
     </section>
   );
-}
+});
 export default SaleProductsList;

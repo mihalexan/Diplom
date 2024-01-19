@@ -1,11 +1,11 @@
 import s from "./SingleProduct.module.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import loadingIcon from "../../assets/images/loading_icon.svg";
+import loading from "../../../assets/images/loading.svg";
 import { useState } from "react";
-import { fetchProductsOfCategory } from "../../store/slices/productsByCategorySlice";
-import { addToCart } from "../../store/slices/basketSlice";
-import { changeQuantity } from "../../store/slices/basketSlice";
+import { fetchProductsOfCategory } from "../../../store/slices/productsByCategorySlice";
+import { addToCart } from "../../../store/slices/basketSlice";
+import { changeQuantity } from "../../../store/slices/basketSlice";
 
 function SingleProduct() {
   const url = "http://localhost:3333";
@@ -55,16 +55,16 @@ function SingleProduct() {
       categoryTitle = "Loading...";
   }
   return (
-    <main className={s.singleProductMain}>
+    <main className={s.main}>
       <div className={s.navWrapper}>
         <Link className={s.links} to="/">
           Main page
         </Link>
-        <div className={s.greyLine}></div>
+        <div className={s.line}></div>
         <Link className={s.links} to="/categories">
           Categories
         </Link>
-        <div className={s.greyLine}></div>
+        <div className={s.line}></div>
         <Link
           className={s.links}
           to={`/categories/${singleProduct.categoryId}`}
@@ -73,17 +73,17 @@ function SingleProduct() {
           {" "}
           {categoryTitle}{" "}
         </Link>
-        <div className={s.greyLine}></div>
-        <Link id={s.currentLink}>{singleProduct.title}</Link>
+        <div className={s.line}></div>
+        <Link id={s.activeLink}>{singleProduct.title}</Link>
       </div>
       <div className={s.singleProductWrapper}>
         <img
           className={s.singleProductImage}
-          src={!singleProduct.id ? loadingIcon : url + singleProduct.image}
+          src={!singleProduct.id ? loading : url + singleProduct.image}
           alt="product_photo"
         />
-        <div className={s.singleProductInfo}>
-          <h4 className={s.singleProductTitle}>{singleProduct.title}</h4>
+        <div className={s.info}>
+          <h4 className={s.title}>{singleProduct.title}</h4>
           <div className={s.priceBlock}>
             <p className={s.discountPrice}>
               $

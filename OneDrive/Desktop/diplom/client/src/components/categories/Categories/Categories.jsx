@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategories } from "../../store/slices/categoriesSlice";
-import CategoryCard from "./CategoryCard";
+import { getAllCategories } from "../../../store/slices/categoriesSlice";
+import CategoryCard from "../CategoryCard/CategoryCard";
 
 import "swiper/css";
 import "swiper/css/pagination";

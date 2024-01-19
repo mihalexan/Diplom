@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import s from "./Products.module.css";
+import s from "./ProductCard.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { fetchSingleProduct } from "../../store/slices/singlProductSlice";
-import { addToCart } from "../../store/slices/basketSlice";
+import { fetchSingleProduct } from "../../../store/slices/singlProductSlice";
+import { addToCart } from "../../../store/slices/basketSlice";
 
 function ProductCard(el) {
   const url = "http://localhost:3333";

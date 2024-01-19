@@ -7,18 +7,18 @@
   align-items: center;
   margin-bottom: 40px;
 }
-.grayLine {
-  height: 1px;
-  width: 100%;
-  background-color: #dddddd;
-  position: relative;
-}
 .titleWrapper h4 {
   color: var(--txt-black, #282828);
   font-size: 64px;
   font-weight: 700;
   line-height: 110%;
   text-wrap: nowrap;
+}
+.line {
+  height: 1px;
+  width: 100%;
+  background-color: #dddddd;
+  position: relative;
 }
 .titleWrapper button {
   position: absolute;
@@ -33,16 +33,7 @@
   line-height: 126%;
   cursor: pointer;
 }
-.basketMessage {
-  overflow: hidden;
-  color: var(--txt-black, #282828);
-  text-overflow: ellipsis;
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 130%;
-  margin-bottom: 32px;
-}
-.basketEmpty button {
+.emptyCart button {
   border-radius: var(--radius-small, 6px);
   background: var(--green, #393);
   border: none;
@@ -57,105 +48,29 @@
   cursor: pointer;
   transition: 250ms;
 }
-.basketEmpty button:hover {
+.emptyCart button:hover {
   background: var(--black, #282828);
 }
-.basket {
-  display: grid;
-  grid-template-columns: 1fr 0.7fr;
-  column-gap: 2.2%;
-}
-.productsPart {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.productInCart {
-  display: flex;
-  border-radius: var(--radius-big, 12px);
-  border: 1px solid var(--grey-divider, #ddd);
-  position: relative;
-}
-.productInCartImg {
-  width: 25%;
-  aspect-ratio: 1.1;
-  border-radius: var(--radius-big, 12px) 0 0 var(--radius-big, 12px);
-  border-right: 1px solid var(--grey-divider, #ddd);
-}
-.productInfo {
-  padding: 4.1% 60px 4.1% 32px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.productInfo h5 {
+.message {
   overflow: hidden;
   color: var(--txt-black, #282828);
   text-overflow: ellipsis;
   font-size: 20px;
   font-weight: 500;
   line-height: 130%;
+  margin-bottom: 32px;
 }
-.deleteIcon {
-  position: absolute;
-  top: 10%;
-  right: 3.3%;
-  cursor: pointer;
+.cart {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr;
+  column-gap: 2.2%;
 }
-.productProperties {
+.products {
   display: flex;
-  gap: 8%;
-  align-items: center;
-}
-.productCounter {
-  display: flex;
-}
-.priceBlock {
-  display: flex;
+  flex-direction: column;
   gap: 16px;
-  align-items: baseline;
 }
-.productCounter button {
-  width: 4vw;
-  aspect-ratio: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-small, 6px);
-  border: 1px solid var(--grey-divider, #ddd);
-  padding: 17px auto;
-  color: var(--grey-divider, #ddd);
-  font-size: 30px;
-  background: none;
-  cursor: pointer;
-}
-.productCounter p {
-  width: 6.7vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--txt-black, #282828);
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 130%;
-  border-bottom: 1px solid var(--grey-divider, #ddd);
-  border-top: 1px solid var(--grey-divider, #ddd);
-  margin: 0 -6px;
-}
-.discountPrice {
-  color: var(--txt-black, #282828);
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 110%;
-}
-.price {
-  color: var(--txt-grey, #8b8b8b);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 130%;
-  text-decoration-line: line-through;
-}
-.orderDetailsPart {
+.orderDetails {
   border-radius: var(--radius-big, 12px);
   background: var(--light-grey, #f1f3f4);
   padding: 32px;
@@ -163,13 +78,13 @@
   max-height: 90vh;
   overflow-y: auto;
 }
-.orderDetailsPart h5 {
+.orderDetails h5 {
   color: var(--txt-black, #282828);
   font-size: 40px;
   font-weight: 700;
   line-height: 110%;
 }
-.orderDetailsPart p {
+.orderDetails p {
   margin-top: 24px;
   color: var(--txt-grey, #8b8b8b);
   font-size: 40px;
@@ -181,12 +96,14 @@
   justify-content: space-between;
   align-items: baseline;
 }
+
 #totalPrice {
   color: var(--txt-black, #282828);
   font-size: 64px;
   font-weight: 700;
   line-height: 110%;
 }
+
 form {
   display: flex;
   flex-direction: column;

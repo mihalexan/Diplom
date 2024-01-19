@@ -8,7 +8,7 @@ import {
 } from "../../../../utils/validations";
 import s from "./GetDiscount.module.css";
 import getDiscountFoto from "../../../../assets/images/main/getDiscountFoto.svg";
-import { createDiscountReceiver } from "../../../../utils/createDiscountReceiver";
+import { generateDiscountReceiver } from "./createDiscountReceiver";
 import { postDiscount } from "../../../../store/slices/getDiscountSlice";
 
 function GetDiscount() {
@@ -23,16 +23,14 @@ function GetDiscount() {
   } = useForm({ mode: "all" });
 
   const handleClick = () => {
-    // Обработка клика на кнопку
     setIsButtonClicked(true);
-    // Остальной код...
   };
 
   const getDiscount = async (data) => {
     setSubmitStatus("submitting");
     try {
-      await createDiscountReceiver(data);
-      await dispatch(postDiscount());
+      const discountReceiverData = await generateDiscountReceiver(data);
+      await dispatch(postDiscount(discountReceiverData));
       setSubmitStatus("request submit");
       reset();
     } catch (error) {

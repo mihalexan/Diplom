@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { discountReceiver } from "../../utils/createDiscountReceiver";
+import { discountReceiver } from "../../components/main/components/getDiscount/createDiscountReceiver";
 
 const url = "http://localhost:3333/sale/send";
 
