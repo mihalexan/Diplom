@@ -83,3 +83,32 @@
   right: 3.3%;
   cursor: pointer;
 }
+@media only screen and (max-width: 768px) {
+  .discountPrice {
+    font-size: 1rem;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .discountPrice {
+    font-size: 2rem;
+  }
+
+  .price {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .discountPrice {
+    font-size: 1rem;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+}

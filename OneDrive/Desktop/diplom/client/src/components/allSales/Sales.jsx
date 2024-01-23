@@ -30,7 +30,10 @@ function Sales() {
         </Link>
       </div>
       <h4 className={s.title}>Discounted items</h4>
-      <div style={{ display: "flex", marginBottom: "50px" }}>
+      <div
+        style={{ display: "flex", marginBottom: "50px" }}
+        className={s.filterSortWrap}
+      >
         <FilterForm />
         <SortForm />
       </div>

@@ -84,3 +84,32 @@
   border: 1px solid var(--grey-divider, #ddd);
   outline: none;
 }
+
+@media only screen and (max-width: 768px) {
+  .inputs,
+  .priceText {
+    font-size: 10px;
+  }
+  .inputs input {
+    padding: 9px 4px;
+    font-size: 10px;
+  }
+
+  .discount {
+    font-size: 10px;
+  }
+
+  .checkbox,
+  .checked {
+    height: 35px;
+    width: 35px;
+  }
+
+  .sorted {
+    font-size: 10px;
+  }
+  .sortForm .select {
+    padding: 9px 4px;
+    font-size: 10px;
+  }
+}
