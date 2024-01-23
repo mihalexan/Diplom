@@ -2,22 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import loading from "../../assets/images/loading.svg";
 
 const initialState = {
-  productsByCategory: {
-    category: {
-      title: "Loading...",
-    },
-    data: [
-      {
-        id: null,
-        title: "loading...",
-        price: " loading...",
-        discont_price: null,
-        image: loading,
-      },
-    ],
+  list: {
+    data: [],
+    status: null,
+    error: null,
   },
-  status: null,
-  error: null,
 };
 
 export const fetchProductsOfCategory = createAsyncThunk(
@@ -38,8 +27,60 @@ export const fetchProductsOfCategory = createAsyncThunk(
 
 export const productsByCategorySlice = createSlice({
   name: "productsOfCategory",
-  initialState,
-  reducers: {},
+  initialState: {
+    status: null,
+    products: {
+      category: {
+        title: "",
+      },
+      data: [],
+    },
+    error: null,
+  },
+  reducers: {
+    sortProducts(state, action) {
+      if (action.payload === "low-high") {
+        state.list.sort((a, b) => a.price - b.price);
+      } else if (action.payload === "high-low") {
+        state.list.sort((a, b) => b.price - a.price);
+      } else if (action.payload === "titleAsc") {
+        state.list.sort((a, b) => a.title.localeCompare(b.title));
+      } else if (action.payload === "titleDesc") {
+        state.list.sort((a, b) => b.title.localeCompare(a.title));
+      } else {
+        state.list.sort((a, b) => a.id - b.id);
+      }
+    },
+
+    filterPrice(state, action) {
+      const { minPrice, maxPrice } = action.payload;
+      state.list.map((el) => {
+        let actualPrice = el.discont_price || el.price;
+        if (actualPrice >= minPrice && actualPrice <= maxPrice) {
+          el.showProductFilter = true;
+        } else {
+          el.showProductFilter = false;
+        }
+        return el;
+      });
+    },
+
+    discountProducts(state, action) {
+      if (action.payload) {
+        state.list.map((el) => {
+          if (el.discont_price === null) {
+            el.showProduct = false;
+          }
+          return el;
+        });
+      } else {
+        state.list.map((el) => {
+          el.showProduct = true;
+          return el;
+        });
+      }
+    },
+  },
 
   extraReducers: (builder) => {
     builder
@@ -48,14 +89,21 @@ export const productsByCategorySlice = createSlice({
         state.error = null;
       })
       .addCase(fetchProductsOfCategory.fulfilled, (state, action) => {
-        state.status = "fulfilled";
-        state.productsOfCategory = action.payload;
+        state.status = "ready";
+        state.list = action.payload;
+        const { data, category } = action.payload;
+        state.list.data = data.map((el) => ({
+          ...el,
+          showProduct: true,
+          showProductFilter: true,
+        }));
+        state.list.category = category;
       })
       .addCase(fetchProductsOfCategory.rejected, (state, action) => {
         state.status = "error ";
-        state.error = action.payload;
       });
   },
 });
-
+export const { filterPrice, sortProducts, discountProducts } =
+  productsByCategorySlice.actions;
 export default productsByCategorySlice.reducer;

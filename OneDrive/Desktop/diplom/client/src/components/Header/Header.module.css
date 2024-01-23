@@ -77,18 +77,18 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2%;
+  width: 3%;
   aspect-ratio: 1;
   color: var(--white, #fff);
   text-align: center;
-  font-size: 1.2vw;
+  font-size: 2vw;
   font-weight: 600;
   line-height: 90%;
   background-color: var(--green, #393);
   padding: 4.7px;
   border-radius: 50%;
-  right: 10.6%;
-  top: 20px;
+  right: 10%;
+  top: 55px;
 }
 aside {
   width: 60vw;
@@ -142,12 +142,10 @@ aside,
   .headerDesktop {
     padding: 15px 2.5%;
   }
-  nav {
-    gap: 15px;
-  }
+
   .productsCount {
     font-size: 1vw;
-    left: 91%;
+    left: 96%;
   }
 }
 @media (max-width: 768px) {
@@ -162,9 +160,6 @@ aside,
   }
   #basket {
     width: 8%;
-  }
-  .productsCount {
-    display: none;
   }
 }
 @media (max-width: 414px) {

@@ -131,9 +131,9 @@
   background-color: var(--txt-black, #282828);
 }
 .toCartBtn.added {
-  background: var(--txt-white, #fff);
+  background: var(--txt-white, #a29f9f);
   color: var(--black, #282828);
-  cursor: not-allowed; /* предотвращает повторное нажатие */
+  cursor: not-allowed;
   border-radius: var(--radius-small, 6px);
   border-color: #282828;
 }

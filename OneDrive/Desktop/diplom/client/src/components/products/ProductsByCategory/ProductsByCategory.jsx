@@ -7,6 +7,7 @@ import FilterForm from "../../FiltersForms/FilterForm/FilterForm";
 import SaleForm from "../../FiltersForms/SaleForm/SaleForm";
 import SortForm from "../../FiltersForms/SortForm/SortForm";
 import ProductCard from "../ProductCard/ProductCard";
+import loading from "../../../assets/images/loading.svg";
 
 function ProductsByCategory() {
   const dispatch = useDispatch();
@@ -18,7 +19,18 @@ function ProductsByCategory() {
   let { productsOfCategory } = useSelector((state) => state.productsOfCategory);
 
   if (!productsOfCategory || !productsOfCategory.data) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+        }}
+      >
+        <img src={loading} alt="loading"></img>
+      </div>
+    );
   }
 
   let categoryProducts = productsOfCategory.data;
