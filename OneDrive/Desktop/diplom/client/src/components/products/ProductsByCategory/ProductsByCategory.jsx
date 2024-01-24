@@ -1,5 +1,5 @@
 import s from "./ProductsByCategory.module.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProductsOfCategory } from "../../../store/slices/productsByCategorySlice";
@@ -9,19 +9,28 @@ import SortForm from "../../FiltersForms/SortForm/SortForm";
 import ProductCard from "../ProductCard/ProductCard";
 
 function ProductsByCategory() {
+  const { id } = useParams(); // Извлекаем id из URL
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProductsOfCategory());
-  }, [dispatch]);
+    console.log(id);
+    if (id) {
+      dispatch(fetchProductsOfCategory({ id }));
+    }
+  }, [id, dispatch]);
 
-  let { productsOfCategory } = useSelector((state) => state.productsOfCategory);
+  const productsOfCategory = useSelector(
+    (state) => state.productsOfCategory.productsByCategory
+  );
+  const { data, category } = productsOfCategory;
+  console.log("Products of Category:", data);
+  console.log("Category:", category);
 
-  if (!productsOfCategory || !productsOfCategory.data) {
-    return <div>Loading...</div>;
-  }
+  //if (!productsOfCategory || !productsOfCategory.data) {
+  //  return <div>Loading...</div>;
+  // }
 
-  let categoryProducts = productsOfCategory.data;
+  // let categoryProducts = productsOfCategory.data;
   return (
     <main className={s.productsMain}>
       <div className={s.navWrapper}>
@@ -33,24 +42,26 @@ function ProductsByCategory() {
           Categories
         </Link>
         <div className={s.line}></div>
-        <Link id={s.activeLink}>{productsOfCategory.category.title}</Link>
+        {category && <Link id={s.activeLink}>{category.title}</Link>}
       </div>
-      <h4 className={s.title}>{productsOfCategory.category.title}</h4>
+      {category && <h4 className={s.title}>{category.title}</h4>}
       <div style={{ display: "flex", marginBottom: "50px" }}>
         <FilterForm />
         <SaleForm />
-        <SortForm arrayOfProducts={categoryProducts} />
+        <SortForm arrayOfProducts={data} />
       </div>
       <ul className={s.productWrapper}>
-        {categoryProducts.map((product) => {
-          return (
-            <ProductCard
-              key={product.id}
-              {...product}
-              categorytitle={categoryProducts.title}
-            />
-          );
-        })}
+        {data
+          ?.filter((el) => el.showProduct && el.showProductFilter)
+          .map((product) => {
+            return (
+              <ProductCard
+                key={product.id}
+                {...product}
+                categorytitle={category.title}
+              />
+            );
+          })}
       </ul>
     </main>
   );

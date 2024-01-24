@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import s from "../FilterForms.module.css";
 import { discountProducts } from "../../../store/slices/allProductsSlice";
+import { discounted_products_cat } from "../../../store/slices/productsByCategorySlice";
 
 function SaleForm() {
   const dispatch = useDispatch();
@@ -10,6 +11,7 @@ function SaleForm() {
   const changeState = () => {
     setCheckBox((prev) => !prev);
     dispatch(discountProducts(!checkBox));
+    dispatch(discounted_products_cat(!checkBox));
   };
 
   return (

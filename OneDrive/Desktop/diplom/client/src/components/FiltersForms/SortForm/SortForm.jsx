@@ -1,11 +1,13 @@
 import s from "../FilterForms.module.css";
 import { sortProducts } from "../../../store/slices/allProductsSlice";
 import { useDispatch } from "react-redux";
+import { sort_prods_cat } from "../../../store/slices/productsByCategorySlice";
 
 function SortForm() {
   const dispatch = useDispatch();
   const sortFunction = (e) => {
     dispatch(sortProducts(e.target.value));
+    dispatch(sort_prods_cat(e.target.value));
   };
   return (
     <div className={s.sortForm}>
